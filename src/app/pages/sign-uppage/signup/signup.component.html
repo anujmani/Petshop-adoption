@@ -1,0 +1,82 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <img src="../../../../assets/dogslogoss.jpg" alt="Shop logo">
+                <mat-card>
+                    <mat-card-title>
+                        Sign up
+                    </mat-card-title>
+                    <div class="container text-center">
+
+                        <form [formGroup]="signupform" (ngSubmit)="onSubmit()">
+
+                            <p>
+                                <mat-form-field class="full-width text-center" appearance="fill">
+
+                                    <mat-label>Enter your name</mat-label>
+                                    <input matInput placeholder="Enter your name" formControlName="name">
+
+                                    <mat-hint>Name</mat-hint>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field class="full-width text-center" appearance="fill">
+
+                                    <mat-label>Email</mat-label>
+                                    <input matInput placeholder="Enter your email" formControlName="email">
+                                    <mat-error *ngIf="signupform.get('email').hasError('email') && signupform.get('email').touched">
+                                        Please enter a valid email address
+                                    </mat-error>
+                                    <mat-hint>Email</mat-hint>
+                                </mat-form-field>
+                            </p>
+                            <p>
+                                <mat-form-field class="full-width text-center mt10" appearance="fill">
+                                    <mat-label>Enter your address</mat-label>
+                                    <input matInput placeholder="Enter your address" formControlName="address">
+                                    <mat-hint>Address</mat-hint>
+                                </mat-form-field>
+                             
+
+                            </p>
+                            <p>
+                                <mat-form-field class="full-width text-center mt10" appearance="fill">
+                                    <mat-label>Enter your password</mat-label>
+                                    <input matInput type="password" placeholder="Enter your password" formControlName="password">
+                                    <mat-hint>Password</mat-hint>
+
+                                </mat-form-field>
+
+                            </p>
+                            <p>
+                                <mat-form-field class="full-width text-center" appearance="fill">
+
+                                    <mat-label>Confirm password</mat-label>
+                                    <input matInput type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+
+                                    <mat-hint>Password</mat-hint>
+                                </mat-form-field>
+                            </p>
+                           
+                            <p>
+                                <button mat-raised-button color="primary" type="submit">Register</button>
+                            </p>
+                            
+
+
+                        </form>
+                       
+                    </div>
+                </mat-card>
+                
+
+            </div>
+            <div class="col-md-9">
+                <router-outlet></router-outlet>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,14 @@
+[
+    {
+      "type": "Dogs",
+      "price": 25.99
+    },
+    {
+      "type": "Cats",
+      "price": 9.99
+    },
+    {
+      "type": "Horse",
+      "price": 2.99
+    }
+  ]

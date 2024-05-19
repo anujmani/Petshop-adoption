@@ -1,0 +1,8 @@
+.button-margin{
+    margin-left: 50%;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 2fr)); /* Adjust column width as needed */
+    grid-gap: 20px; /* Adjust the gap between grid items */
+  }

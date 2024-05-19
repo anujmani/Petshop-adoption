@@ -1,0 +1,20 @@
+<div class="container grid-container" >
+    <mat-card *ngFor="let pet of pets" class="mt20 " >
+        <div class="container mt20 mb20" style="display: flex;">
+                <div class="container">
+                <h3 >{{ pet.name }}</h3>
+                <h4>{{ pet.price | currency }}</h4>
+                <p>{{ pet.description }}</p>
+                
+                <button mat-raised-button [routerLink]="['/details',pet.id]">Details</button>
+            </div>
+            <div class="container button-margin text-center">
+                <button mat-raised-button color="primary" (click)="onAdd(pet)">
+                    Add to cart
+                </button>
+            </div>
+
+        </div>
+
+    </mat-card>
+</div>

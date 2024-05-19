@@ -1,0 +1,26 @@
+<div class="container col-md-6">
+    <mat-card>
+        <mat-card-title class="container text-center">
+            <mat-icon class="mt20">shopping_cart</mat-icon> Cart
+        </mat-card-title>
+        <mat-divider></mat-divider>
+        <div class="container" *ngFor="let item of items">
+            <span> <h1 class="mt20">{{item.name}}</h1></span>
+            <br>
+            <span>{{item.price |currency}}</span>
+            <mat-divider></mat-divider>
+
+        </div>
+        <div class="container text-center mt20 " *ngIf="items.length!=0;else emptyItemsBlock" >
+            <button mat-flat-button color="primary" (click)="onclick()" >Buy</button>
+        </div>
+        <ng-template #emptyItemsBlock>
+            <div class="container text-center mt20 mb20">
+                <br>
+                <button mat-flat-button color="primary" [routerLink]="'/shop'" >Shop Now</button>
+            </div>
+          </ng-template>
+        
+    </mat-card>    
+</div>
+

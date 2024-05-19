@@ -1,0 +1,15 @@
+.change img{
+    height: 25%;
+    width: 25%; 
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 100px;
+    margin-top: 60px;
+  }
+  img{
+    height: 300px;
+    width: 150px;
+  }

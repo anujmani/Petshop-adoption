@@ -1,0 +1,37 @@
+<div class="container text-center">
+
+    <form [formGroup]="buyform" (ngSubmit)="onsubmit()">
+
+        <p>
+            <mat-form-field class="full-width text-center mt20" appearance="fill">
+
+                <mat-label>Enter your name</mat-label>
+                <input matInput placeholder="Enter your name" formControlName="name">
+
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field class="full-width text-center mt10" appearance="fill">
+                <mat-label>Enter address</mat-label>
+                <input matInput placeholder="Enter your address" formControlName="address">
+               
+
+            </mat-form-field>
+
+        </p>
+        <p>
+            <mat-form-field class="full-width text-center mt10" appearance="fill">
+                <mat-label>ContactNo</mat-label>
+                <input matInput placeholder="Enter your Contacts" formControlName="contactNo">
+                
+            </mat-form-field>
+         
+
+        </p>
+        <button class="button mb20" mat-raised-button color="primary" [routerLink]="'shop'"> Buy</button>
+        
+
+
+    </form>
+   
+</div>

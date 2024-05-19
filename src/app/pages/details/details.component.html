@@ -1,0 +1,17 @@
+<h2 class="text-center mt20">Pet Details</h2>
+<div class="container">
+    <mat-card >
+        <div class="container mt20 mb20">
+            <div *ngIf="pet">
+                <h3>{{ pet.name }}</h3>
+                <h4>{{ pet.price | currency }}</h4>
+                <p>{{ pet.description }}</p>
+                <button mat-flat-button color="primary" (click)="onAdd(pet)">Add to cart</button>
+                
+              
+              </div>
+        </div>
+    </mat-card>
+</div>
+
+

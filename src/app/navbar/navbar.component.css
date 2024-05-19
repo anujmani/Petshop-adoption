@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  a{
+margin-left: 20px;
+  }
+  .small-button {
+    font-size: 20px; /* Adjust the font size as needed */
+    padding: 5px 10px; /* Adjust the padding as needed */
+  }
