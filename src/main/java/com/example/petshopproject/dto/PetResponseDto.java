@@ -1,21 +1,27 @@
 package com.example.petshopproject.dto;
 
+import com.example.petshopproject.entity.User;
 import com.example.petshopproject.entity.enums.Type;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Negative;
+import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-public class PetResponseDto {
+import java.io.Serializable;
+
+@Data
+public class PetResponseDto implements Serializable {
     private String name;
     private String reason;
     private String petDescription;
     private int age;
-
-    private String picture;
     private String color;
+    @Enumerated(EnumType.STRING)
+    private Type type;
+    private byte[] picture;
+    private Integer userId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "added_by")
+//    private User addedBy;
 }

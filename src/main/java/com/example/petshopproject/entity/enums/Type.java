@@ -1,9 +1,12 @@
 package com.example.petshopproject.entity.enums;
 
 public enum Type {
-    DOG,
-    CAT,
-    FISH,
-    OTHERS
+    LABRADOR,
+    RETRIEVER, GERMAN_SHEPHERD, GOLDEN_RETRIEVER,
+    BULLDOG, BEAGLE, POODLE,
+    ROTTWEILER, YORKSHIRE,
+    TERRIER, BOXER, DACHSHUND, SIBERIAN,
+    HUSKY,
+    PERSIAN, SIAMESE, RAGDOLL, BENGAL, SPHYNX, BRITISH_SHORTHAIR, ABYSSINIAN
 
-}
+    }

@@ -1,10 +1,7 @@
 package com.example.petshopproject.dto;
 
 import com.example.petshopproject.entity.enums.Type;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Lob;
-import jakarta.validation.constraints.Negative;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
@@ -18,4 +15,10 @@ public class PetrequestDto implements Serializable {
     private String color;
     @Enumerated(EnumType.STRING)
     private Type type;
+    private byte[] picture;
+    private Integer userId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "added_by")
+//    private User addedBy;
 }

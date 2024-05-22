@@ -1,5 +1,6 @@
 package com.example.petshopproject.entity;
 
+import com.example.petshopproject.dto.PetResponseDto;
 import com.example.petshopproject.entity.enums.Status;
 import com.example.petshopproject.entity.enums.Type;
 import jakarta.persistence.*;
@@ -24,7 +25,23 @@ public class Pet {
     private Type type;
     @Enumerated(EnumType.STRING)
     private Status status;
-    @Column(name = "Image", nullable = false)
-    private String picture;
+    @Lob
+    @Column(name = "Image", nullable = false, columnDefinition = "longblob")
+    private byte[] picture;
+    @ManyToOne
+    @JoinColumn(name = "added_by")
+    private User addedBy;
+
+    public PetResponseDto getDto(){
+        PetResponseDto petResponseDto= new PetResponseDto();
+        petResponseDto.setName(name);
+        petResponseDto.setPetDescription(petDescription);
+        petResponseDto.setAge(age);
+        petResponseDto.setColor(color);
+        petResponseDto.setReason(reason);
+        petResponseDto.setPicture(picture);
+        petResponseDto.setUserId(addedBy.getUserId());
+        return petResponseDto;
+    }
 
 }

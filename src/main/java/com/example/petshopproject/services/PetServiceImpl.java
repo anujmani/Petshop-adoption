@@ -4,8 +4,10 @@ import com.example.petshopproject.dto.FilterParam;
 import com.example.petshopproject.dto.PetResponseDto;
 import com.example.petshopproject.dto.PetrequestDto;
 import com.example.petshopproject.entity.Pet;
+import com.example.petshopproject.entity.User;
 import com.example.petshopproject.entity.enums.Status;
 import com.example.petshopproject.exception.ResourceNotFoundException;
+import com.example.petshopproject.repositories.CustomerRepo;
 import com.example.petshopproject.repositories.PetRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,25 +32,27 @@ import java.util.stream.Collectors;
 public class PetServiceImpl implements PetService {
     private final ObjectMapper objectMapper;
     private final PetRepo petRepo;
+    private final CustomerRepo userRepo;
+    private final JwtService jwtService;
 
-    private static String FOLDER_PATH = "C:\\Users\\Lenovo\\OneDrive\\Desktop\\petpasalBackend\\PetshopBackendDemo" +
-            "\\src" +
-            "\\main\\resources\\images\\";
 
 
     @Override
-    public String addNewPets(MultipartFile file, PetrequestDto petrequestDto) throws IOException {
+    public PetResponseDto addNewPets(PetrequestDto petrequestDto, String token) throws IOException {
 
-        String filePath = FOLDER_PATH + file.getOriginalFilename();
-        Pet pet = objectMapper.convertValue(petrequestDto, Pet.class);
-        file.transferTo(new File(filePath));
-        pet.setPicture(file.getOriginalFilename());
-        pet.setStatus(Status.AVAILABLE);
-        if (pet != null) {
-            petRepo.save(pet);
-            return "file uploaded successfully : " + filePath;
+        String userId=getIdFromToken(token);
+        Pet pet = new Pet();
+        pet.setName(petrequestDto.getName());
+        pet.setAge(petrequestDto.getAge());
+        pet.setPetDescription(petrequestDto.getPetDescription());
+        pet.setColor(petrequestDto.getColor());
+        Optional<User> user = Optional.ofNullable(userRepo.findByName(userId));
+        if (user.isPresent()) {
+            pet.setAddedBy(user.get());
         }
-        return "Pet is saved";
+        pet.setStatus(Status.AVAILABLE);
+        pet.setPicture(petrequestDto.getPicture());
+        return petRepo.save(pet).getDto();
     }
 
 
@@ -61,7 +66,6 @@ public class PetServiceImpl implements PetService {
     public PetResponseDto getPetsById(int id) {
         Pet pet = petRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("No message"));
         PetResponseDto petResponseDto = objectMapper.convertValue(pet, PetResponseDto.class);
-
         return petResponseDto;
     }
 
@@ -69,5 +73,13 @@ public class PetServiceImpl implements PetService {
     public String deletePets(int id) {
         petRepo.deletePetByPetsId(id);
         return "Deleted";
+    }
+    public String getIdFromToken(String token){
+
+        String userNameStr = jwtService.getUserNameFromToken(token);
+        System.out.println(userNameStr);
+
+        return userNameStr;
+
     }
 }
