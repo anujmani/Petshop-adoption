@@ -5,21 +5,20 @@ export class Pet {
     id: number | undefined;
     name: string | undefined;
     type: string | undefined;
-    description: string |undefined;
-    highlighted: boolean | undefined;
+    petDescription: string |undefined;
     age: number | undefined;
-    photoUrl: string;
-    price: number | undefined;
+    reason: string | undefined;
+    picture: string;
 
     constructor(data: {
-        price: number | undefined; id: number | undefined; name: string | undefined; type: string | undefined; age: number | undefined; photoUrl: string; 
+        price: number | undefined; id: number | undefined; name: string | undefined; type: string | undefined; age: number | undefined; picture: string; reason: string| undefined; 
 }){
         this.id = data.id;
         this.name = data.name;
         this.type = data.type;
         this.age = data.age;
-        this.price= data.price;
-        this.photoUrl = data.photoUrl;
+        this.picture = data.picture;
+        this.reason= data.reason;
         
     }
   }

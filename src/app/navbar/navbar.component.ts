@@ -30,6 +30,7 @@ export class NavbarComponent implements OnInit {
   }
   public isUser(){
     if(this.userRoles=== 'ROLE_USER' ){
+      console.log(this.userRoles);
       return true;
     }
     else{

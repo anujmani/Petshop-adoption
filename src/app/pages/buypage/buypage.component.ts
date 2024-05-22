@@ -22,6 +22,7 @@ export class BuypageComponent implements OnInit{
   onsubmit(){
     console.warn('Your order has been submitted', this.buyform.value);
     this.cart.clearCart();
+    
     this.buyform.reset();
     this.closebuy.close();
     alert("Your order has been submitted")

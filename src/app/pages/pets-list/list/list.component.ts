@@ -21,7 +21,7 @@ export class ListComponent {
   }
 
   getPets(): void {
-    this.petsService.getPets(this.page,this.pageSize)
+    this.petsService.getPets(this.page)
       .subscribe(
         (response: any) => {
           this.pets = response as any[];

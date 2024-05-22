@@ -1,24 +1,24 @@
 <div class="container">
-  <h2>
-      Add Pets 
-  </h2>
+  <h2>Add Pets</h2>
   <form [formGroup]="petForm" (ngSubmit)="addPets()">
-      <div>
-          <label class="file-upload-label">
-              <span>
-                  Select a file
-              </span>
-              <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden>
-              <mat-icon>attach-file</mat-icon>
-          </label>
-          <div *ngIf="selectedFile" class="image-preview">
-              <div class="circle_image">
-                  <img src="imagePreview" alt="Selected Image" class="preview-image">
-
-              </div>
-          </div>
+    <div>
+      <label class="file-upload-label">
+        <span> Select a file </span>
+        <input
+          type="file"
+          id="fileInput"
+          (change)="onFileSelected($event)"
+          hidden
+        />
+        <mat-icon>attach_file</mat-icon>
+      </label>
+      <div *ngIf="selectedFile" class="image-preview">
+        <div class="circle_image">
+          <img src="imagePreview" alt="Selected Image" class="preview-image" />
+        </div>
       </div>
-      <!-- <mat-form-field appearance="outline" class="form-field">
+    </div>
+    <!-- <mat-form-field appearance="outline" class="form-field">
           <mat-label>
               Select a Category
           </mat-label>
@@ -28,26 +28,62 @@
               </mat-option>
           </mat-select>
       </mat-form-field> -->
-      <mat-form-field appearance="outline" class="form-field">
-          <mat-label>
-              Name
-          </mat-label>
-          <input matInput type="text" placeholder="Name" formControlName="name" />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="form-field">
-          <mat-label>
-              Price
-          </mat-label>
-          <input matInput type="number" placeholder="Price" formControlName="price" />
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="form-field">
-          <mat-label>
-              Description
-          </mat-label>
-          <textarea matInput placeholder="Description" formControlName="description"></textarea>
-          <!-- <input matInput type="number" placeholder="Price" formControlName="price" /> -->
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit"> Add pets</button>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Enter the name of your pet</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter the name of your pet"
+        formControlName="name"
+      />
+    </mat-form-field>
 
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Enter the color of your pet</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Enter the color of your pet"
+        formControlName="color"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Enter the age of your pet</mat-label>
+      <input
+        matInput
+        type="number"
+        placeholder="Enter the age of your pet"
+        formControlName="age"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Please provide a description of your pet</mat-label>
+      <textarea
+        matInput
+        placeholder="Please provide a description of your pet"
+        formControlName="petDescription"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Please provide a reason for adoption</mat-label>
+      <textarea
+        matInput
+        placeholder="Please provide a reason for adoption"
+        formControlName="reason"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Select the type of your pet</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add pets</button>
   </form>
 </div>

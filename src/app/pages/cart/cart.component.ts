@@ -7,31 +7,24 @@ import { BuypageComponent } from '../buypage/buypage.component';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private cart: CartserviceService,
+    private dialog: MatDialog
+  ) {}
+  check = true;
 
-  constructor(private route: ActivatedRoute, private cart:CartserviceService,
-     private dialog:MatDialog){
+  items = this.cart.getItems();
 
-  }
-  check=true;
-
-  items=this.cart.getItems();
-
-    ngOnInit(): void {
-      console.log(this.items)
-
+  ngOnInit(): void {
+    console.log(this.items);
   }
   onclick() {
-    this.dialog.open(BuypageComponent,{
+    this.dialog.open(BuypageComponent, {
       width: '550px',
-    }
-    )
-    }
-    
-  
-
+    });
+  }
 }
-
-
