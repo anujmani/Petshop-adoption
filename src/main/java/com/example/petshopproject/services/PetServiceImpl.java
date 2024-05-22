@@ -51,14 +51,17 @@ public class PetServiceImpl implements PetService {
             pet.setAddedBy(user.get());
         }
         pet.setStatus(Status.AVAILABLE);
-        pet.setPicture(petrequestDto.getPicture());
+        pet.setPicture(petrequestDto.getPicture().getBytes());
         return petRepo.save(pet).getDto();
     }
 
 
     public Page<PetResponseDto> getAllpets(FilterParam filterParam) {
         PageRequest pageRequest = PageRequest.of(filterParam.getPageNumber(), filterParam.getPageSize());
+
         Page<Pet> petsPage = petRepo.findAll(pageRequest);
+        System.out.println(petsPage);
+
         return petsPage.map(pet -> objectMapper.convertValue(pet, PetResponseDto.class));
     }
 

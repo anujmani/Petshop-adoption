@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 @Data
 public class PetResponseDto implements Serializable {
+    private int petsId;
     private String name;
     private String reason;
     private String petDescription;
