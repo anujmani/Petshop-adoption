@@ -34,6 +34,7 @@ public class AuthenticationService {
         catch (Exception e){
             throw new RuntimeException(e);
         }
+
         System.out.println("why is this not working");
         var user= repo.findByName(request.getName());
         var jwtToken= jwtService.generateToken(user);

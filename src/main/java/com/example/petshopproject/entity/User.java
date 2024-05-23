@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,14 +38,12 @@ public class User implements UserDetails {
     private Roles role;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
+//        Set<GrantedAuthority> authorities = new HashSet<>();
 
         // Assuming that your UserRole class has a 'getRole()' method to retrieve role names
-        for (Roles userRole : Roles.values()) {
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + userRole.name().toString().toUpperCase()));
-        }
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_" + role.name()));
 
-        return authorities;
+
     }
 
     @Override

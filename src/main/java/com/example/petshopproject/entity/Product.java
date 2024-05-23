@@ -1,5 +1,6 @@
 package com.example.petshopproject.entity;
 
+import com.example.petshopproject.entity.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,9 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -36,19 +39,13 @@ public class Product{
     private byte[] image;
 
     @Column(name = "created", columnDefinition = "datetime default CURRENT_TIMESTAMP", nullable = false)
-    private Date created;
+    private Date createdDate;
 
-    @Column(name = "modified", columnDefinition = "datetime default CURRENT_TIMESTAMP")
-    private Date modified;
-
-    @Column(name = "deleted", columnDefinition = "tinyint default 0")
-    private Boolean deleted;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn (name = "category_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JsonIgnore
-    private Category category;
+    private Status status;
     @ManyToOne
     private User user;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")
+    private List<ProductComment> productComments = new ArrayList<>();
 }

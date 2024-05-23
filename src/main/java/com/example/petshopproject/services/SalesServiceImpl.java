@@ -20,7 +20,7 @@ public class SalesServiceImpl implements SalesService{
 
     @Override
     public List<UserProductMap> getAllUserProductMap() {
-        List<UserProductMap> userProductMaps=userProductMapRepo.getByCategory();
+        List<UserProductMap> userProductMaps=userProductMapRepo.findAll();
         return userProductMaps;
     }
 

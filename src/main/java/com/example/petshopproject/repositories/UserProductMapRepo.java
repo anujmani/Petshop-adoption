@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface UserProductMapRepo extends JpaRepository<UserProductMap,Long> {
-    @Query("select upm from UserProductMap upm order by upm.product.category.name asc ")
-    List<UserProductMap> getByCategory();
+
 }
