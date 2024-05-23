@@ -42,5 +42,9 @@
     >
     <mat-icon>logout</mat-icon>
   </button>
+  <button  *ngIf="isLoggedIn && !isUser()" mat-icon-button class="example-icon ml20 mr30 small-button" aria-label="Example icon-button with share icon" [routerLink]="'/Orders'"
+    >
+    Order
+  </button>
 
 </mat-toolbar>

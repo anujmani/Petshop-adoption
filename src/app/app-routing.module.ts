@@ -73,27 +73,7 @@ const routes: Routes = [
     component: HomePageComponent,
     pathMatch:'full'
   },
- 
 
-  
-  {
-    path:'admin',
-    component: HomePageComponent,
-    pathMatch: 'full',
-    canActivate:[AdminGuard],
-    children:[
-      {
-        path:'cart',
-        component: CartComponent,
-        pathMatch:'full'
-      },
-      {
-        path:'addProducts',
-        component: AddProductsComponent,
-      },
-      
-    ]
-  },
   { path: 'admin', loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule) },
  
 ];

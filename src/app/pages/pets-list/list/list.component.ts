@@ -1,40 +1,90 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CartserviceService } from 'src/app/cartservice.service';
+import { FilterParam } from 'src/app/model/FilterParam';
+import { PaginatedResponse } from 'src/app/model/paginatedResponse';
+import { Pet } from 'src/app/model/pets';
+import { LoginServiceService } from 'src/app/services/login-service.service';
 import { PetsService } from 'src/app/services/pets.service';
+import { SearchFormServiceService } from 'src/app/services/search-form-service.service';
+import { AdminService } from '../../admin/admin.service';
+import { Product } from 'src/app/model/product';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.css'],
 })
 export class ListComponent {
-  pets: any[] | undefined;
-  pageSize: number = 10; // Define the number of items per page
-  page: number = 1; // Define the current page number
-  totalItems: number | undefined; // Define the total number of items
-  totalPages: number | undefined; 
-  constructor(private http: HttpClient,private petsService: PetsService,private router: Router) { }
+  products: Product[] = [];
+
+  searchProductForm!: FormGroup;
+  totalElements: number | undefined;
+  totalPages: number | undefined;
+  currentPage: number | undefined;
+  filterParam: FilterParam = new FilterParam();
+  userRoles: any;
+
+ 
+  
+
+  constructor(
+    private route: ActivatedRoute,
+    private cart: CartserviceService,
+    private petService: PetsService,
+    private fb: FormBuilder,
+    public login: LoginServiceService,
+    private searchFormService: SearchFormServiceService, // Corrected injection
+    private adminService: AdminService
+  ) {}
 
   ngOnInit(): void {
-    this.getPets();
+    this.buildSearchForm();
+    this.loadProducts();
+    this.userRoles = this.login.getUserRole();
   }
 
-  getPets(): void {
-    this.petsService.getPets(this.page)
-      .subscribe(
-        (response: any) => {
-          this.pets = response as any[];
-        },
-        (error: any) => {
-          alert("Error fetching pets");
-        }
-      );
+  buildSearchForm() {
+    this.searchProductForm = this.fb.group({
+      age: [null, [Validators.required]],
+      name: [null, [Validators.required]],
+      colorSets: [null, [Validators.required]],
+    });
   }
-  addPet(){
-    window.location.href='/create';
+
+  loadProducts(page: number = 0): void {
+    // Added pagination support
+    this.filterParam = this.searchFormService.getFilteredParams(
+      this.searchProductForm
+    );
+
+    this.adminService.getProducts(page, this.filterParam).subscribe(
+      (response: PaginatedResponse) => {
+        console.log('::', response);
+        this.products = response.content;
+      },
+      (error) => {
+        console.error('Error fetching products', error);
+      }
+    );
   }
-  
+
+  onAdd(product: Product): void {
+    console.log(product);
+    this.cart.addProductToCart(product);
+    alert(`${product.name} is added to the cart`);
+  }
+  public isUser() {
+    if (this.userRoles === 'ROLE_USER') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  submitForm() {
+    this.loadProducts(); // Reload pets with new filter parameters
+  }
 }
-
-

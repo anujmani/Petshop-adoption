@@ -10,10 +10,11 @@ import { FilterParam } from '../model/FilterParam';
   providedIn: 'root'
 })
 export class PetsService {
+ 
+  constructor(private http: HttpClient) { }
   getPetTypes(): Observable<string[]> {
     return this.http.get<string[]>(`${baseUrl}/pets/types`);
   }
-  constructor(private http: HttpClient) { }
 
   getAllPetsByName(title: any): Observable<any> {
     return this.http.get(`${baseUrl}/pets/getPets/${title}`);

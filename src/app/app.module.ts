@@ -33,6 +33,7 @@ import { AdoptionpageComponent } from './pages/adoptionpage/adoptionpage/adoptio
 import { ListComponent } from './pages/pets-list/list/list.component';
 import { CreatePetsComponent } from './pages/pets-list/create/create-pets.component';
 import {MatSelectModule} from '@angular/material/select';
+import { OrderComponent } from './pages/order/order.component';
 
 
 
@@ -50,11 +51,11 @@ import {MatSelectModule} from '@angular/material/select';
     LoginpageComponent,
     DashboardComponent,
     SidebarComponent,
-    AddProductsComponent,
     EditProductsComponent,
     AdoptionpageComponent,
     ListComponent,
-    CreatePetsComponent
+    CreatePetsComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

@@ -49,6 +49,7 @@ export class ShoppageComponent implements OnInit {
 
     this.petService.getPets(page, this.filterParam).subscribe(
       (response: PaginatedResponse) => {
+        console.log("::",response);
         this.pets = response.content;
         this.totalElements = response.totalElements;
         this.totalPages = response.totalPages;

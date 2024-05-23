@@ -1,26 +1,30 @@
 <!-- src/app/shoppage/shoppage.component.html -->
 <div class="container">
-    <form [formGroup]="searchPetForm" class="search-form" (submit)="submitForm()">
-      <mat-form-field appearance="outline" class="search-input">
-        <mat-label>Enter Keyword to search</mat-label>
-        <input matInput formControlName="title" />
-        <button
-          mat-button
-          matSuffix
-          color="primary"
-          [disabled]="searchPetForm.invalid"
-        >
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </form>
-  
-  
+  <form [formGroup]="searchPetForm" class="search-form" (submit)="submitForm()">
+    <mat-form-field appearance="outline" class="search-input">
+      <mat-label>Enter Keyword to search</mat-label>
+      <input matInput formControlName="title" />
+      <button
+        mat-button
+        matSuffix
+        color="primary"
+        [disabled]="searchPetForm.invalid"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
   <!-- Button positioned in the upper right corner -->
-  <button mat-raised-button color="accent" class="create-pet-button" [routerLink]="['/create']">
+  <button
+    mat-raised-button
+    color="accent"
+    class="create-pet-button"
+    [routerLink]="['/create']"
+  >
     Create Pet
   </button>
-  
+
   <div class="container grid-container">
     <mat-card *ngFor="let pet of pets" class="pet-card">
       <div class="container mt20 mb20" style="display: flex">
@@ -28,8 +32,9 @@
           <img [src]="pet.picture" alt="Pet picture" />
           <h3>{{ pet.name }}</h3>
           <p>{{ pet.age }} years old</p>
+          <!-- this is {{pet.petId}}s -->
           <div class="button-container">
-            <button mat-raised-button [routerLink]="['/details', pet.id]">
+            <button mat-raised-button [routerLink]="['/details', pet.petsId]">
               Details
             </button>
             <button mat-raised-button color="primary" (click)="onAdd(pet)">
@@ -40,4 +45,4 @@
       </div>
     </mat-card>
   </div>
-  
+</div>

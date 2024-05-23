@@ -1,22 +1,49 @@
-<div class="container grid-container" >
-        <mat-card *ngFor="let pet of pets" class="mt20 " >
-            <div class="container mt20 mb20" style="display: flex;">
-                    <div class="container">
-                    <h3 >{{ pet.name }}</h3>
-                    <h4>{{ pet.price | currency }}</h4>
-                    <p>{{ pet.description }}</p>
-                    
-                    <button mat-raised-button [routerLink]="['/details',pet.id]">Details</button>
-                </div>
-                <div class="container button-margin text-center">
-                    <button mat-raised-button color="primary">
-                        Add to cart
-                    </button>
-                </div>
-    
-            </div>
-    
-        </mat-card>
-        
+<!-- src/app/shoppage/shoppage.component.html -->
+<div class="container">
+  <form [formGroup]="searchProductForm" class="search-form" (submit)="submitForm()">
+    <mat-form-field appearance="outline" class="search-input">
+      <mat-label>Enter Keyword to search</mat-label>
+      <input matInput formControlName="title" />
+      <button
+        mat-button
+        matSuffix
+        color="primary"
+        [disabled]="searchProductForm.invalid"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <!-- Button positioned in the upper right corner -->
+  <button
+    *ngIf="!isUser()"
+    mat-raised-button
+    color="accent"
+    class="create-pet-button"
+    [routerLink]="['/admin/addProducts']"
+  >
+    Add Products
+  </button>
+
+  <div class="container grid-container">
+    <mat-card *ngFor="let product of products" class="pet-card">
+      <div class="container mt20 mb20" style="display: flex">
+        <div class="container">
+          <img [src]="product.picture" alt="Pet picture" />
+          <h3>{{ product.name }}</h3>
+          <p>{{ product.price }} years old</p>
+          <!-- this is {{pet.petId}}s -->
+          <div class="button-container">
+            <button mat-raised-button [routerLink]="['/details', product.productId]">
+              Details
+            </button>
+            <button mat-raised-button color="primary" (click)="onAdd(product)">
+              Buy
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
 </div>
-<button class="button mb20" mat-raised-button color="primary" (click)="addPet()"> Buy</button>

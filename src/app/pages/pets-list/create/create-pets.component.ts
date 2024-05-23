@@ -74,7 +74,7 @@ export class CreatePetsComponent implements OnInit {
     this.petService.createPets(formData).subscribe(
       (response) => {
         console.log('Pet created successfully', response);
-        this.router.navigate(['/path-to-redirect']); // Adjust the path to where you want to navigate after creation
+        this.router.navigate(['/user']); // Adjust the path to where you want to navigate after creation
       },
       (error) => {
         console.error('Error creating pet', error);

@@ -74,6 +74,7 @@ export class LoginServiceService {
   public getUserRole(){
     let user=this.getUser();
     console.log(user)
+    console.log(user.authorities[0].authority)
     return user.authorities[0].authority;
   }
 

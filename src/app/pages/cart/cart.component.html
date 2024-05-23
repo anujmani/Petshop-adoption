@@ -1,26 +1,76 @@
 <div class="container col-md-6">
     <mat-card>
-        <mat-card-title class="container text-center">
-            <mat-icon class="mt20">shopping_cart</mat-icon> Cart
-        </mat-card-title>
-        <mat-divider></mat-divider>
-        <div class="container" *ngFor="let item of items">
-            <span> <h1 class="mt20">{{item.name}}</h1></span>
-            <br>
-            <!-- <span>{{item.price |currency}}</span> -->
+      <mat-card-title class="container text-center">
+        <mat-icon class="mt20">shopping_cart</mat-icon> Cart
+      </mat-card-title>
+      <mat-divider></mat-divider>
+  
+      <!-- Check if both pets and products arrays are empty -->
+      <div *ngIf="pets.length > 0 || products.length > 0; else emptyItemsBlock">
+  
+        <!-- Pets Section -->
+        <div *ngIf="pets.length > 0">
+          <h3 class="text-center">Pets</h3>
+          <div class="container" *ngFor="let pet of pets">
+            <span>
+              <h2 class="mt20">{{ pet.name }}</h2>
+            </span>
+            <span>
+              <p>{{ pet.age }} years</p>
+            </span>
+            <span>
+              <p>{{ pet.petDescription }}</p>
+            </span>
+            <br />
             <mat-divider></mat-divider>
+            <div *ngFor="let item of pets; let i = index">
+                <!-- Display pet information -->
+                <button (click)="removeItemFromCart(i, true)">Remove</button>
+              </div>
+              
+          
+          </div>
 
+          <div class="container text-center mt20">
+            <button mat-flat-button color="primary" (click)="onClick()">Adopt</button>
+          </div>
         </div>
-        <div class="container text-center mt20 " *ngIf="items.length!=0;else emptyItemsBlock" >
-            <button mat-flat-button color="primary" (click)="onclick()" >Buy</button>
+  
+        <!-- Products Section -->
+        <div *ngIf="products.length > 0">
+          <h3 class="text-center">Products</h3>
+          <div class="container" *ngFor="let product of products">
+            <span>
+              <h2 class="mt20">{{ product.name }}</h2>
+            </span>
+            <span>
+              <p>{{ product.description }}</p>
+            </span>
+            <span>
+              <p>{{ product.price | currency }}</p>
+            </span>
+            <br />
+            <div *ngFor="let item of products; let i = index">
+                <!-- Display product information -->
+                <button (click)="removeItemFromCart(i, false)">Remove</button>
+              </div>
+            <mat-divider></mat-divider>
+          </div>
+          <div class="container text-center mt20">
+            <button mat-flat-button color="primary" (click)="onProductClick()">Buy</button>
+          </div>
         </div>
-        <ng-template #emptyItemsBlock>
-            <div class="container text-center mt20 mb20">
-                <br>
-                <button mat-flat-button color="primary" [routerLink]="'/shop'" >Shop Now</button>
-            </div>
-          </ng-template>
-        
-    </mat-card>    
-</div>
-
+      </div>
+  
+      <!-- Empty Cart Block -->
+      <ng-template #emptyItemsBlock>
+        <div class="container text-center mt20 mb20">
+          <br />
+          <button mat-flat-button color="primary" [routerLink]="'/shop'">
+            Shop Now
+          </button>
+        </div>
+      </ng-template>
+    </mat-card>
+  </div>
+  

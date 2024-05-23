@@ -1,0 +1,42 @@
+.admin-dashboard {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('src/assets/DogTemp.png');
+    background-size: cover;
+    opacity: 0.8; /* Adjust opacity as needed for contrast */
+    filter: brightness(70%); /* Adjust brightness for contrast */
+  }
+  
+  .content {
+    z-index: 1; /* Ensure content is above background image */
+    text-align: center;
+    color: white;
+  }
+  
+  .content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px; /* Adjust left position */
+  }
+  
+  .mat-flat-button {
+    font-size: 1.2rem; /* Increase button font size */
+    padding: 10px 20px; /* Increase button padding */
+  }
+  

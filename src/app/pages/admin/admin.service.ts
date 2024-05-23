@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import baseUrl from 'src/app/helper';
+import { ProductFilterParam } from 'src/app/model/ProductFilterParam';
+import { PaginatedResponse } from 'src/app/model/paginatedResponse';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Injectable({
@@ -28,4 +30,29 @@ export class AdminService {
       
     )
    }
+   createProduct(petData: FormData): Observable<any> {
+    return this.http.post(`${baseUrl}/product/create`, petData);
+  }
+  getProducts(pageNumber: number = 0, filterParam?: ProductFilterParam): Observable<PaginatedResponse> {
+    const pageSize: number = 10; // Correctly declare pageSize variable
+
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber.toString()) // Convert to string
+      .set('pageSize', pageSize.toString()); // Convert to string
+
+    if (filterParam?.name) {
+      params = params.set('name', filterParam.name);
+    }
+    if (filterParam?.description) {
+      params = params.set('description', filterParam.description);
+    }
+    if (filterParam?.picture) {
+      params = params.set('picture', filterParam.picture);
+    }
+    if (filterParam?.price !== undefined) {
+      params = params.set('price', filterParam.price.toString());
+    }
+
+    return this.http.get<PaginatedResponse>(`${baseUrl}/products/getProductsList`, { params });
+  }
 }

@@ -2,7 +2,7 @@
 import { Pet } from './pets';
 
 export interface PaginatedResponse {
-  content: Pet[];
+  content: [];
   totalElements: number;
   totalPages: number;
 }

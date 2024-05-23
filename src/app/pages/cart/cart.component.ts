@@ -17,14 +17,31 @@ export class CartComponent implements OnInit {
   ) {}
   check = true;
 
-  items = this.cart.getItems();
+  pets = this.cart.getItems();
+  products = this.cart.getProducts();
 
   ngOnInit(): void {
-    console.log(this.items);
+    console.log(this.pets);
   }
-  onclick() {
+  onClick() {
+    const petsIds = this.pets.map((item) => item.petsId);
     this.dialog.open(BuypageComponent, {
       width: '550px',
+      data: { petsIds },
     });
+  }
+  onProductClick() {
+    const productIds = this.products.map((item) => item.productId);
+    this.dialog.open(BuypageComponent, {
+      width: '550px',
+      data: { productIds },
+    });
+  }
+  removeItemFromCart(index: number, isPet: boolean): void {
+    if (isPet) {
+      this.pets.splice(index, 1);
+    } else {
+      this.products.splice(index, 1);
+    }
   }
 }

@@ -4,22 +4,19 @@ import { LoginServiceService } from '../services/login-service.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   user: any;
   userRoles: any;
 
-  constructor(public login: LoginServiceService) { }
+  constructor(public login: LoginServiceService) {}
 
   ngOnInit(): void {
     this.isLoggedIn = this.login.isLoggedIn();
     this.user = this.login.getUser();
-    this.userRoles= this.login.getUserRole();
-    console.log(this.isLoggedIn);
-    
-    
+    this.userRoles = this.login.getUserRole();
   }
 
   public logout(): void {
@@ -28,14 +25,13 @@ export class NavbarComponent implements OnInit {
     this.user = null;
     window.location.reload();
   }
-  public isUser(){
-    if(this.userRoles=== 'ROLE_USER' ){
+  public isUser() {
+    if (this.userRoles === 'ROLE_USER') {
       console.log(this.userRoles);
       return true;
-    }
-    else{
+    } else {
+      console.log(this.userRoles);
       return false;
     }
-    
   }
 }
