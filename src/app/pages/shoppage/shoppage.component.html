@@ -1,9 +1,10 @@
 <!-- src/app/shoppage/shoppage.component.html -->
 <div class="container">
   <form [formGroup]="searchPetForm" class="search-form" (submit)="submitForm()">
+    <!-- Search input -->
     <mat-form-field appearance="outline" class="search-input">
       <mat-label>Enter Keyword to search</mat-label>
-      <input matInput formControlName="title" />
+      <input matInput formControlName="name" />
       <button
         mat-button
         matSuffix
@@ -13,6 +14,42 @@
         <mat-icon>search</mat-icon>
       </button>
     </mat-form-field>
+
+    <!-- Filter icon button -->
+    <button mat-icon-button [matMenuTriggerFor]="filterMenu">
+      <mat-icon>filter_list</mat-icon>
+    </button>
+    <mat-menu #filterMenu="matMenu">
+      <div class="filter-container">
+        <!-- Filter controls within the same form -->
+        <!-- Dropdown filter for age -->
+        <mat-form-field appearance="outline" class="filter-input">
+          <mat-label>Age</mat-label>
+          <mat-select formControlName="age">
+            <mat-option
+              *ngFor="let ageOption of ageOptions"
+              [value]="ageOption"
+              >{{ ageOption }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Dropdown filter for color -->
+        <mat-form-field appearance="outline" class="filter-input">
+          <mat-label>Color</mat-label>
+          <mat-select formControlName="color">
+            <mat-option
+              *ngFor="let colorOption of colorOptions"
+              [value]="colorOption"
+              >{{ colorOption }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" class="apply-button">Apply</button>
+        <button mat-raised-button color="warn" type="button" (click)="resetForm()">Reset</button>
+      </div>
+    </mat-menu>
   </form>
 
   <!-- Button positioned in the upper right corner -->
@@ -29,10 +66,10 @@
     <mat-card *ngFor="let pet of pets" class="pet-card">
       <div class="container mt20 mb20" style="display: flex">
         <div class="container">
-          <img [src]="pet.picture" alt="Pet picture" />
+          <!-- Adjusted image size -->
+          <img [src]="pet.picture" alt="Pet picture" class="pet-image" />
           <h3>{{ pet.name }}</h3>
           <p>{{ pet.age }} years old</p>
-          <!-- this is {{pet.petId}}s -->
           <div class="button-container">
             <button mat-raised-button [routerLink]="['/details', pet.petsId]">
               Details

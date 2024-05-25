@@ -1,50 +1,105 @@
 <mat-toolbar color="primary">
-
-  <a [routerLink]="''" style="text-decoration: none; color: white;">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>pets
-
-      </mat-icon>
+  <a [routerLink]="''" style="text-decoration: none; color: white">
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>pets </mat-icon>
     </button>
     <span>Pet Store</span>
   </a>
 
   <span class="example-spacer"></span>
-  <button *ngIf="!isLoggedIn" mat-icon-button class="example-icon favorite-icon ml20 mr20 small-button "
-    aria-label="Example icon-button with heart icon" [routerLink]="'/login'">
+  <button
+    *ngIf="!isLoggedIn"
+    mat-icon-button
+    class="example-icon favorite-icon ml20 mr20 small-button"
+    aria-label="Example icon-button with heart icon"
+    [routerLink]="'/login'"
+  >
     Login
   </button>
-  <button *ngIf="isLoggedIn && !isUser()" mat-icon-button class="example-icon favorite-icon ml20 mr20 small-button "
-    aria-label="Example icon-button with heart icon" [routerLink]="'/admin'">
+  <button
+    *ngIf="isLoggedIn && !isUser()"
+    mat-icon-button
+    class="example-icon favorite-icon ml20 mr20 small-button"
+    aria-label="Example icon-button with heart icon"
+    [routerLink]="'/admin'"
+  >
     Home
   </button>
-  <button *ngIf="isLoggedIn && isUser()" mat-icon-button class="example-icon favorite-icon ml20 mr20 small-button "
-    aria-label="Example icon-button with heart icon" [routerLink]="'/user'">
+  <button
+    *ngIf="isLoggedIn && isUser()"
+    mat-icon-button
+    class="example-icon favorite-icon ml20 mr20 small-button"
+    aria-label="Example icon-button with heart icon"
+    [routerLink]="'/user'"
+  >
     Home
   </button>
-  <button *ngIf="!isLoggedIn" mat-icon-button class="example-icon ml20 mr30 small-button"  aria-label="Example icon-button with share icon"
-    [routerLink]="'/signup'">
+  <button
+    *ngIf="!isLoggedIn"
+    mat-icon-button
+    class="example-icon ml20 mr30 small-button"
+    aria-label="Example icon-button with share icon"
+    [routerLink]="'/signup'"
+  >
     Signup
   </button>
-  <button *ngIf="isLoggedIn" mat-icon-button class="example-icon ml20 mr30 small-button"  aria-label="Example icon-button with share icon"
-    [routerLink]="'/shop'">
+  <button
+    *ngIf="isLoggedIn"
+    mat-icon-button
+    class="example-icon ml20 mr30 small-button"
+    aria-label="Example icon-button with share icon"
+    [routerLink]="'/shop'"
+  >
     Shop
   </button>
-  <button *ngIf="isLoggedIn" mat-icon-button class="example-icon ml20 mr30 small-button"  aria-label="Example icon-button with share icon"
-    [routerLink]="'/cart'">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-  <button *ngIf="isLoggedIn" mat-icon-button class="example-icon ml20 mr30 small-button"  aria-label="Example icon-button with share icon"
-    [routerLink]="'/adopt'">
-    <mat-icon>pets</mat-icon>
-  </button>
-  <button  *ngIf="isLoggedIn" mat-icon-button class="example-icon ml20 mr30 small-button" (click)="logout()" aria-label="Example icon-button with share icon"
-    >
-    <mat-icon>logout</mat-icon>
-  </button>
-  <button  *ngIf="isLoggedIn && !isUser()" mat-icon-button class="example-icon ml20 mr30 small-button" aria-label="Example icon-button with share icon" [routerLink]="'/Orders'"
-    >
+  <button
+    *ngIf="isLoggedIn && !isUser()"
+    mat-icon-button
+    class="example-icon ml20 mr30 small-button"
+    aria-label="Example icon-button with share icon"
+    [routerLink]="'/order'"
+  >
     Order
   </button>
-
+  <button
+    *ngIf="isLoggedIn && !isUser()"
+    mat-icon-button
+    class="example-icon ml20 mr30 small-button"
+    aria-label="Example icon-button with share icon"
+    [routerLink]="'/lostPets'"
+  >
+    Inquiry
+  </button>
+  <button
+  *ngIf="isLoggedIn"
+  mat-icon-button
+  class="example-icon ml20 mr30 small-button"
+  aria-label="Example icon-button with share icon"
+  [routerLink]="'/adopt'"
+>
+  <mat-icon>pets</mat-icon>
+</button>
+  <button
+  *ngIf="isLoggedIn"
+  mat-icon-button
+  class="example-icon ml20 mr30 small-button"
+  aria-label="Example icon-button with share icon"
+  [routerLink]="'/cart'"
+>
+  <mat-icon>shopping_cart</mat-icon>
+</button>
+  <button
+    *ngIf="isLoggedIn"
+    mat-icon-button
+    class="example-icon ml20 mr30 small-button"
+    (click)="logout()"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
+ 
 </mat-toolbar>

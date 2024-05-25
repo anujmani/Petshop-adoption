@@ -1,0 +1,66 @@
+<div class="lost-and-found-container">
+    <h2>Lost and Found Pets</h2>
+  
+    <!-- Form to post a lost pet -->
+    <form [formGroup]="lostPetForm" (ngSubmit)="onSubmit()" class="lost-pet-form">
+      <mat-card>
+        <mat-card-content>
+          <mat-form-field appearance="outline">
+            <mat-label>Pet Name</mat-label>
+            <input matInput formControlName="name" />
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Last Seen Location</mat-label>
+            <input matInput formControlName="location" />
+          </mat-form-field>
+  
+          <!-- Input for uploading an image -->
+          <div class="file-upload-container">
+            <label class="file-upload-label" for="fileInput">
+              <mat-icon>attach_file</mat-icon>
+              <span>Select a file</span>
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              (change)="onFileSelected($event)"
+              hidden
+            />
+            <div *ngIf="imagePreview" class="image-preview">
+              <img
+                [src]="imagePreview"
+                alt="Selected Image"
+                class="preview-image"
+              />
+            </div>
+          </div>
+  
+          <!-- Button to submit the form -->
+          <button mat-raised-button color="primary" type="submit" [disabled]="lostPetForm.invalid">Post</button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  
+    <!-- List of lost pets -->
+    <div class="lost-pet-list" *ngIf="lostPets && lostPets.length">
+      <div class="lost-pet-card" *ngFor="let pet of lostPets">
+        <mat-card>
+          <mat-card-header>
+            <img [src]="pet.image" alt="Pet Image" class="pet-image" /> <!-- Display pet image -->
+            <mat-card-title>{{ pet.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ pet.description }}</p>
+            <p><strong>Last Seen:</strong> {{ pet.location }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  

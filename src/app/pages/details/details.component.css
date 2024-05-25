@@ -1,0 +1,37 @@
+.pet-image {
+    max-width: 100%; /* Adjust the image width to fit within the container */
+    max-height: 200px; /* Adjust the maximum height of the image */
+    object-fit: cover; /* Ensure the image covers the entire space */
+  }
+  .comment-section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .section-title {
+    margin-bottom: 10px;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .comments-list {
+    margin-top: 20px;
+  }
+  
+  .comment-text {
+    font-size: 16px;
+  }
+  
+  .comment-date {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  .empty-state {
+    text-align: center;
+    color: #777;
+  }
+  

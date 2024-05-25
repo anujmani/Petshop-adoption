@@ -1,1 +1,9 @@
-<p>order works!</p>
+<div class="card mb-3" *ngFor="let order of orders">
+    <div class="card-body">
+      <h5 class="card-title">Order ID: {{ order.name }}</h5>
+      <p class="card-text">Description: {{ order.description }}</p>
+      <p class="card-text">Status: {{ order.status }}</p>
+      <!-- Add other order details to display -->
+    </div>
+  </div>
+  

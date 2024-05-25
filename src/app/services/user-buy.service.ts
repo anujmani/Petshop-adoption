@@ -9,7 +9,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class UserBuyService {
   buyProducts(data: any): Observable<any> {
-    return this.http.post<any>(`${baseUrl}/products/buy`, data);
+    return this.http.post<any>(`${baseUrl}/sales/buy`, data);
   }
   
   

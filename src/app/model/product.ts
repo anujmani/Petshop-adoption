@@ -3,7 +3,7 @@ export  class Product {
       throw new Error('Method not implemented.');
     }
     productId: number | undefined;
-    name: string | undefined;
+    productName: string | undefined;
     description: string | undefined;
     picture: string;
     price: number| undefined;
@@ -11,12 +11,12 @@ export  class Product {
     constructor(data: {
       price: number | undefined;
       productId: number | undefined;
-      name: string | undefined;
+      productName: string | undefined;
       description: string| undefined;
       picture: string;
     }) {
       this.productId = data.productId;
-      this.name = data.name;
+      this.productName = data.productName;
       this.price = data.price;
       this.description = data.description;
       this.picture = data.picture;

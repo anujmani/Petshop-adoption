@@ -21,3 +21,30 @@
     right: 10px;
     z-index: 10; /* Ensure the button is on top */
   }
+  .pet-image {
+    max-width: 100%; /* Adjust the image width to fit within the container */
+    max-height: 200px; /* Adjust the maximum height of the image */
+    object-fit: cover; /* Ensure the image covers the entire space */
+  }
+  .search-input {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px; /* Add margin-top for additional spacing */
+    margin-bottom: 40px; /* Increase margin-bottom for more space below */
+  }
+  
+  .filter-container {
+    padding: 10px;
+  }
+  
+  .filter-input {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+  
+  .apply-button {
+    width: 100%;
+    max-width: 300px;
+  }
+  

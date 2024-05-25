@@ -34,6 +34,10 @@ import { ListComponent } from './pages/pets-list/list/list.component';
 import { CreatePetsComponent } from './pages/pets-list/create/create-pets.component';
 import {MatSelectModule} from '@angular/material/select';
 import { OrderComponent } from './pages/order/order.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { BuyProductComponent } from './pages/buy-product/buy-product.component';
+import { LostAndFoundComponent } from './pages/lost-and-found/lost-and-found.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -55,7 +59,10 @@ import { OrderComponent } from './pages/order/order.component';
     AdoptionpageComponent,
     ListComponent,
     CreatePetsComponent,
-    OrderComponent
+    OrderComponent,
+    BuyProductComponent,
+    LostAndFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +82,7 @@ import { OrderComponent } from './pages/order/order.component';
     CarouselModule,
     HttpClientModule,
     MatSelectModule,
+    MatMenuModule,
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

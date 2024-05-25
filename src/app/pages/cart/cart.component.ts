@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CartserviceService } from 'src/app/cartservice.service';
 import { BuypageComponent } from '../buypage/buypage.component';
+import { BuyProductComponent } from '../buy-product/buy-product.component';
 
 @Component({
   selector: 'app-cart',
@@ -32,7 +33,7 @@ export class CartComponent implements OnInit {
   }
   onProductClick() {
     const productIds = this.products.map((item) => item.productId);
-    this.dialog.open(BuypageComponent, {
+    this.dialog.open(BuyProductComponent, {
       width: '550px',
       data: { productIds },
     });

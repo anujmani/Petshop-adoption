@@ -61,9 +61,13 @@ export class ListComponent {
     );
 
     this.adminService.getProducts(page, this.filterParam).subscribe(
-      (response: PaginatedResponse) => {
-        console.log('::', response);
-        this.products = response.content;
+      (response: Product[]) => {
+        console.log("::",response);
+        response.forEach(element =>{
+          element.picture= 'data:image/jpeg;base64,'+ element.picture;
+          this.products.push(element);
+        })
+        
       },
       (error) => {
         console.error('Error fetching products', error);
@@ -74,7 +78,7 @@ export class ListComponent {
   onAdd(product: Product): void {
     console.log(product);
     this.cart.addProductToCart(product);
-    alert(`${product.name} is added to the cart`);
+    alert(`${product.productName} is added to the cart`);
   }
   public isUser() {
     if (this.userRoles === 'ROLE_USER') {

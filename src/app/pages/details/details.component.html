@@ -1,17 +1,53 @@
 <h2 class="text-center mt20">Pet Details</h2>
 <div class="container">
-    <mat-card >
-        <div class="container mt20 mb20">
-            <div *ngIf="pet">
-                <h3>{{ pet.name }}</h3>
-                <h4>{{ pet.price | currency }}</h4>
-                <p>{{ pet.description }}</p>
-                <button mat-flat-button color="primary" (click)="onAdd(pet)">Add to cart</button>
-                
-              
-              </div>
-        </div>
-    </mat-card>
+  <mat-card>
+    <div class="container mt20 mb20">
+      <div *ngIf="pet">
+        <img [src]="pet.picture" alt="Pet picture" class="pet-image" />
+        <h3>{{ pet.name }}</h3>
+        <h4>{{ pet.age }}</h4>
+        <p>{{ pet.petDescription }}</p>
+        <h4 *ngIf="pet.reason">Reason</h4>
+        <p>{{ pet.reason }}</p>
+        <button mat-flat-button color="primary" (click)="onAdd(pet)">
+          Add to cart
+        </button>
+      </div>
+    </div>
+  </mat-card>
+  <mat-card class="comment-section mt20">
+    <h3>Comments</h3>
+    <form [formGroup]="commentForm" (ngSubmit)="submitComment()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput formControlName="comment" rows="4"></textarea>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="commentForm.invalid"
+      >
+        Submit
+      </button>
+    </form>
+
+    <div *ngIf="comments.length > 0" class="comments-list mt20">
+        <mat-list>
+          <mat-list-item *ngFor="let comment of comments">
+            <mat-icon mat-list-icon>account_circle</mat-icon>
+            <div mat-line class="comment-text">{{ comment.comment }}</div>
+            <div mat-line class="comment-by-date">
+              <span>{{ comment.commentedBy }}</span>
+              <span class="separator">•</span>
+              <span>{{ comment.date | date : "short" }}</span>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+    <div *ngIf="comments.length === 0" class="empty-state mt20">
+      No comments available. Be the first to comment!
+    </div>
+  </mat-card>
 </div>
-
-

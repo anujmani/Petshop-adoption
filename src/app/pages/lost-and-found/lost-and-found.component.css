@@ -1,0 +1,87 @@
+.lost-and-found-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .lost-pet-form mat-card {
+    margin-bottom: 24px;
+    padding: 16px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .lost-pet-list {
+    margin-top: 24px;
+  }
+  
+  .lost-pet-card {
+    margin-bottom: 16px; /* Gap between posts */
+  }
+  
+  .mat-card {
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+  }
+  
+  .mat-card:hover {
+    transform: translateY(-5px); /* Lift the card slightly */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+  }
+  
+  .mat-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .mat-card-content p {
+    margin: 8px 0;
+  }
+  
+  @media (min-width: 600px) {
+    .lost-pet-list mat-grid-list {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+  
+  .pet-image {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensure the image covers the entire space */
+    border-radius: 50%; /* Make the image round */
+  }
+  
+  /* Styles for the file upload button */
+  .file-upload-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px; /* Adjust margin as needed */
+  }
+  
+  .file-upload-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Styles for the image preview */
+  .image-preview {
+    margin-top: 16px; /* Adjust margin as needed */
+  }
+  
+  .preview-image {
+    width: 100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    object-fit: cover; /* Ensure the image covers the entire space */
+    border-radius: 50%; /* Make the image round */
+  }
+  

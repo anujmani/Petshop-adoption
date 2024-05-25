@@ -5,11 +5,15 @@ import { Observable } from 'rxjs';
 import { Pet } from '../model/pets';
 import { PaginatedResponse } from '../model/paginatedResponse';
 import { FilterParam } from '../model/FilterParam';
+import { Comment } from '../model/comment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PetsService {
+  getPetById(petId:number): Observable<Pet> {
+    return this.http.get<Pet>(`${baseUrl}/pets/getPetsById/${petId}`);
+  }
  
   constructor(private http: HttpClient) { }
   getPetTypes(): Observable<string[]> {
@@ -24,23 +28,16 @@ export class PetsService {
     return this.http.post(`${baseUrl}/pets/create`, petData);
   }
 
-  getPets(pageNumber: number = 0, filterParam?: FilterParam): Observable<PaginatedResponse> {
-    const pageSize: number = 10; // Correctly declare pageSize variable
+  getPets( filterParam?: FilterParam): Observable<Pet[]> {
 
-    let params = new HttpParams()
-      .set('pageNumber', pageNumber.toString()) // Convert to string
-      .set('pageSize', pageSize.toString()); // Convert to string
+    return this.http.post<Pet[]>(`${baseUrl}/pets/getPetsList`, filterParam);
+  }
+  savePetComment(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${baseUrl}/api/save`, comment);
+  }
 
-    if (filterParam?.name) {
-      params = params.set('name', filterParam.name);
-    }
-    if (filterParam?.color) {
-      params = params.set('color', filterParam.color);
-    }
-    if (filterParam?.age) {
-      params = params.set('age', filterParam.age.toString());
-    }
-
-    return this.http.get<PaginatedResponse>(`${baseUrl}/pets/getPetsList`, { params });
+  // Method to get comments by pet ID
+  getByPetId(petId: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${baseUrl}/api/get/${petId}`);
   }
 }

@@ -12,6 +12,8 @@ import { AddProductsComponent } from './pages/admin/add-products/add-products.co
 import { AdoptionpageComponent } from './pages/adoptionpage/adoptionpage/adoptionpage.component';
 import { ListComponent } from './pages/pets-list/list/list.component';
 import { CreatePetsComponent } from './pages/pets-list/create/create-pets.component';
+import { OrderComponent } from './pages/order/order.component';
+import { LostAndFoundComponent } from './pages/lost-and-found/lost-and-found.component';
 
 const routes: Routes = [
   {
@@ -48,14 +50,15 @@ const routes: Routes = [
     pathMatch:'full'
   },
   {
+    path:'lostPets',
+    component: LostAndFoundComponent,
+    pathMatch:'full'
+  },
+  {
     path:'adopt',
     component: AdoptionpageComponent,
     children:[
-      {
-        path:'details/:petId',
-        component: DetailsComponent,
      
-      },
       {
         path:'list',
         component: ListComponent
@@ -65,12 +68,22 @@ const routes: Routes = [
 
   },
   {
+    path:'details/:petId',
+    component: DetailsComponent,
+ 
+  },
+  {
     path:'create',
     component: CreatePetsComponent
   },
   {
     path:'user',
     component: HomePageComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'order',
+    component: OrderComponent,
     pathMatch:'full'
   },
 
