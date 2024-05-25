@@ -6,6 +6,9 @@ import com.example.petshopproject.entity.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -31,6 +34,9 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "added_by")
     private User addedBy;
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pet_id")
+    private List<PetComment> petComments = new ArrayList<>();
 
     public PetResponseDto getDto(){
         PetResponseDto petResponseDto= new PetResponseDto();

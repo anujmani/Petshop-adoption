@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface UserProductMapRepo extends JpaRepository<UserProductMap,Long> {
-
+    @Query("SELECT upmr FROM UserProductMap upmr where upmr.user.name= :userName ")
+    List<UserProductMap> getByUserName(String userName);
 }

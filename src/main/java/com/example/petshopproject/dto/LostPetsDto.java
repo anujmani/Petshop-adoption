@@ -1,15 +1,12 @@
 package com.example.petshopproject.dto;
 
-import com.example.petshopproject.entity.PetComment;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
-
 @Data
-public class ProductDto {
+public class LostPetsDto {
     private String name;
     private String description;
-    private int price;
+    private String location;
     private byte[] bytePicture;
     private MultipartFile picture;
-    private PetComment comments;
 }

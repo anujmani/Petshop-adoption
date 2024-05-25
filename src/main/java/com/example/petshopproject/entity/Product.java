@@ -1,14 +1,10 @@
 package com.example.petshopproject.entity;
 
 import com.example.petshopproject.entity.enums.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,5 +43,5 @@ public class Product{
 
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
-    private List<ProductComment> productComments = new ArrayList<>();
+    private List<PetComment> petComments = new ArrayList<>();
 }

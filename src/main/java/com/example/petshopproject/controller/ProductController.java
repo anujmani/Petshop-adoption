@@ -2,14 +2,18 @@ package com.example.petshopproject.controller;
 
 
 
+import com.example.petshopproject.dto.FilterParam;
 import com.example.petshopproject.dto.ProductDto;
+import com.example.petshopproject.dto.ProductFilterParam;
 import com.example.petshopproject.entity.Product;
 import com.example.petshopproject.exception.ResourceNotFoundException;
 import com.example.petshopproject.services.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Filter;
 
 @RestController
 @RequestMapping("/product")
@@ -20,17 +24,18 @@ public class ProductController {
     private ProductServiceImpl productService;
 
     @PostMapping("/create")
-    public Product createProduct(@RequestBody ProductDto product) throws ResourceNotFoundException {
-        Product createdProduct = productService.addProduct(product);
+    public Product createProduct(@ModelAttribute ProductDto product,@RequestHeader("Authorization") String token) throws ResourceNotFoundException, IOException {
+        Product createdProduct = productService.addProduct(product,token);
+        System.out.println(token);
         if(createdProduct == null){
             throw new ResourceNotFoundException("Error creating product.");
         }
         return createdProduct;
     }
 
-    @GetMapping("/getall")
-    public List<Product> getAllProducts() throws ResourceNotFoundException {
-        List<Product> products = productService.getAllProduct();
+    @GetMapping("/getProductsList")
+    public List<Product> getAllProducts(ProductFilterParam filterParam) throws ResourceNotFoundException {
+        List<Product> products = productService.getAllProduct(filterParam);
         if(products == null || products.isEmpty()){
             throw new ResourceNotFoundException("No Products Available");
         }
@@ -45,4 +50,5 @@ public class ProductController {
         }
         return product;
     }
+
 }

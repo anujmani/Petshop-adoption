@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.Serializable;
 
 @Data
+//@AllArgsConstructor
 public class PetResponseDto implements Serializable {
     private int petsId;
     private String name;

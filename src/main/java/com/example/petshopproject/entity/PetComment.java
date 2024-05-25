@@ -6,16 +6,18 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@Entity(name = "product_comment")
-public class ProductComment implements Serializable {
+@Entity(name = "pet_comment")
+public class PetComment implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "product_id")
-    private Integer productId;
+    @Column(name = "pet_id")
+    private Integer petId;
 
     @Column(name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer commentId;
 
     @Column(name = "comment_by")

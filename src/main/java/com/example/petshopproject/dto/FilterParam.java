@@ -6,6 +6,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FilterParam {
-    private int pageSize;
-    private int pageNumber;
+  private String name;
+  private String description;
+  private int price;
+  private int age;
+  private String color;
 }

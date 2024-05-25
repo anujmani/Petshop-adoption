@@ -21,7 +21,7 @@ public interface PetService
 //    @CacheEvict(value = "PetsCache")
 //    String addNewPets(PetrequestDto petrequestDto, MultipartFile file) throws IOException;
 
-    Page<PetResponseDto> getAllpets(FilterParam filterParam);
+    List<PetResponseDto> getAllpets(FilterParam filterParam);
 
     PetResponseDto getPetsById(int id);
 

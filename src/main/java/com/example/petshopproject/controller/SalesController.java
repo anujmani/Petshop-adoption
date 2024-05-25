@@ -1,5 +1,7 @@
 package com.example.petshopproject.controller;
 
+import com.example.petshopproject.dto.OrderDto;
+import com.example.petshopproject.dto.UserPetsMapsDto;
 import com.example.petshopproject.entity.UserProductMap;
 import com.example.petshopproject.services.SalesService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +18,13 @@ import java.util.List;
 public class SalesController {
     private final SalesService salesService;
     @PostMapping("/buy")
-    public void userProductMap(@RequestBody List<UserProductMap> userProductMap){
+    public void userProductMap(@RequestBody UserPetsMapsDto userProductMap){
         salesService.createSales(userProductMap);
     }
 
     @GetMapping("/getAllSales")
-    public List<UserProductMap> getUserProductMap(){
-        return salesService.getAllUserProductMap();
+    public List<OrderDto> getUserProductMap(@RequestHeader("Authorization") String token){
+        return salesService.getAllUserProductMap(token);
     }
 
 }

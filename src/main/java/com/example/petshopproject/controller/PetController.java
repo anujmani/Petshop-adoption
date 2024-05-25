@@ -35,8 +35,8 @@ public class PetController {
     private ResponseEntity<PetResponseDto> addNewPets(@ModelAttribute PetrequestDto petrequestDto, @RequestHeader("Authorization") String token) throws IOException {
         return ResponseEntity.status(HttpStatus.CREATED).body(petService.addNewPets(petrequestDto,token));
     }
-    @GetMapping("/getPetsList")
-    private Page<PetResponseDto> petsList(FilterParam filterParam){
+    @PostMapping("/getPetsList")
+    private List<PetResponseDto> petsList(@RequestBody FilterParam filterParam){
         return petService.getAllpets(filterParam);
     }
     @GetMapping("/getPetsById/{id}")

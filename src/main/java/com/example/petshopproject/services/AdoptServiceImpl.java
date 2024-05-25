@@ -39,9 +39,9 @@ public class AdoptServiceImpl implements AdoptService {
                 if (adoptingPet.getStatus().equals(Status.AVAILABLE)) {
                     userPetsMap.setPet(adoptingPet);
                     userPetsMap.setAdoptionDay(new Date());
-                    adoptingPet.setStatus(Status.ADOPTED);
                     userPetsMap.setMblNo(userPetsMapsDto.getMblNo());
-                    userPetsMap.setDeliveryAddress(userPetsMap.getDeliveryAddress());
+                    userPetsMap.setDeliveryAddress(userPetsMapsDto.getAddress());
+                    adoptingPet.setStatus(Status.ADOPTED);
                     petRepo.save(adoptingPet);
                     userPetsMaps.add(userPetsMapRepo.save(userPetsMap));
                 } else {

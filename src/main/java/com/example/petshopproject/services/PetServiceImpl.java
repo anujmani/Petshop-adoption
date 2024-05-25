@@ -36,11 +36,10 @@ public class PetServiceImpl implements PetService {
     private final JwtService jwtService;
 
 
-
     @Override
     public PetResponseDto addNewPets(PetrequestDto petrequestDto, String token) throws IOException {
 
-        String userId=getIdFromToken(token);
+        String userId = getIdFromToken(token);
         Pet pet = new Pet();
         pet.setName(petrequestDto.getName());
         pet.setAge(petrequestDto.getAge());
@@ -56,13 +55,23 @@ public class PetServiceImpl implements PetService {
     }
 
 
-    public Page<PetResponseDto> getAllpets(FilterParam filterParam) {
-        PageRequest pageRequest = PageRequest.of(filterParam.getPageNumber(), filterParam.getPageSize());
-
-        Page<Pet> petsPage = petRepo.findAll(pageRequest);
-        System.out.println(petsPage);
-
-        return petsPage.map(pet -> objectMapper.convertValue(pet, PetResponseDto.class));
+    public List<PetResponseDto> getAllpets(FilterParam filterParam){
+        System.out.println(filterParam.getName()+","+filterParam.getColor());
+        if (filterParam.getName().isEmpty() && filterParam.getColor().isEmpty() && filterParam.getAge()==0) {
+            return petRepo.findAll().stream()
+                    .map(this::toPetResponseDto) // Convert to DTO
+                    .collect(Collectors.toList());
+        }
+        String name = (filterParam.getName() != null && !filterParam.getName().isEmpty()) ? filterParam.getName() : null;
+        String color = (filterParam.getColor() != null && !filterParam.getColor().isEmpty()) ? filterParam.getColor() : null;
+        int age = (filterParam.getAge()!= 0) ? filterParam.getAge() : 0;
+        System.out.println(age);
+        System.out.println(filterParam.getAge());
+        // Assuming your repository has methods to filter pets
+        return petRepo.findByFilter(
+                        name,color,age).stream()
+                .map(this::toPetResponseDto) // Convert to DTO
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -71,17 +80,19 @@ public class PetServiceImpl implements PetService {
         PetResponseDto petResponseDto = objectMapper.convertValue(pet, PetResponseDto.class);
         return petResponseDto;
     }
-
+    private PetResponseDto toPetResponseDto(Pet pet) {
+        // Convert Pet entity to PetResponseDto
+        return objectMapper.convertValue(pet,PetResponseDto.class);
+    }
     @Override
     public String deletePets(int id) {
         petRepo.deletePetByPetsId(id);
         return "Deleted";
     }
-    public String getIdFromToken(String token){
+
+    public String getIdFromToken(String token) {
 
         String userNameStr = jwtService.getUserNameFromToken(token);
-        System.out.println(userNameStr);
-
         return userNameStr;
 
     }

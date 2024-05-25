@@ -20,4 +20,9 @@ public class UserProductMap {
     private User user;
     @Column(name = "sale_day", columnDefinition = "datetime default CURRENT_TIMESTAMP", nullable = false)
     private Date saleDay;
+    @Column(name="mobile_no", nullable = false)
+    private double mblNo;
+    @Column(name="delivery_address")
+    private String deliveryAddress;
+
 }
